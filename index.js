@@ -55,9 +55,15 @@ function displayBookOnPage()
         
         // Add the remove button
         const removeButton = document.createElement('button');
-        removeButton.innerText = 'delete';
+        removeButton.innerText = 'remove';
+        removeButton.addEventListener('click', () => {
+            bookList.removeChild(newDiv);
+            myLibrary.splice(book, 1);
+            displayBookOnPage();
+        })
         newDiv.appendChild(removeButton);
-        
+
+
         bookList.appendChild(newDiv);
     }
 }
