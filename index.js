@@ -17,10 +17,19 @@ function addBookToLibrary()
 
 
 function displayBookOnPage()
-{
+{   
+    // clear existing list, so no duplicates records are created
+    const bookList = document.querySelector('#book-list');
+    const bookRecords = Array.from(document.querySelectorAll('.BookRecord'));
+
+    for (let record in bookRecords) {
+        bookList.removeChild(bookRecords[record]);
+    }
+    
+
+
     for (const book in myLibrary)
     {
-        const pageDiv = document.querySelector('#book-list');
 
         // div for book info card
         const newDiv = document.createElement('div');
@@ -49,7 +58,7 @@ function displayBookOnPage()
         removeButton.innerText = 'delete';
         newDiv.appendChild(removeButton);
         
-        pageDiv.appendChild(newDiv);
+        bookList.appendChild(newDiv);
     }
 }
 
@@ -80,7 +89,7 @@ newBookBtn.addEventListener( 'click', () => {
 });
 
 formClose.addEventListener( 'click', (e) => {
-    e.preventDefault();
+    // e.preventDefault();
     bookForm.style.display = 'none';
 });
 
