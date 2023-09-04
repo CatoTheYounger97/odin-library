@@ -1,4 +1,3 @@
-const myLibrary = [];
 
 function Book(title, author, releaseDate) 
 {
@@ -9,52 +8,53 @@ function Book(title, author, releaseDate)
 
 function addBookToLibrary() 
 {
-    const title = prompt('Book Title');
-    const author = prompt('Book Author');
-    const releaseDate = prompt('Book Release Date');
-
+    const title = document.querySelector('form > #title').value;
+    const author = document.querySelector('form > #author').value;
+    const releaseDate = document.querySelector('form > #release-date').value;
+    
     myLibrary.push(new Book(title, author, releaseDate));
 }
 
 
 function displayBookOnPage()
 {
-    pageDiv = document.querySelector('#book-list');
-
     for (const book in myLibrary)
     {
+        const pageDiv = document.querySelector('#book-list');
+
         // div for book info card
-        newDiv = document.createElement('div');
+        const newDiv = document.createElement('div');
         newDiv.classList.add('BookRecord');
-
+        
         // present book data in an unordered list
-        unorderedList = document.createElement('ul');
+        const unorderedList = document.createElement('ul');
         newDiv.appendChild(unorderedList);
-
-        listOne = document.createElement('li');
-        listTwo = document.createElement('li');
-        listThree = document.createElement('li');
-
-        bookObject = myLibrary[book];
-
+        
+        const listOne = document.createElement('li');
+        const listTwo = document.createElement('li');
+        const listThree = document.createElement('li');
+        
+        let bookObject = myLibrary[book];
+        
         listOne.innerText = 'Title: ' + bookObject.title;
         listTwo.innerText = 'Author: ' + bookObject.author;
         listThree.innerText = 'Release Date: ' + bookObject.releaseDate;
-
+        
         unorderedList.appendChild(listOne);
         unorderedList.appendChild(listTwo);
         unorderedList.appendChild(listThree);
-
+        
         // Add the remove button
-        removeButton = document.createElement('button');
+        const removeButton = document.createElement('button');
         removeButton.innerText = 'delete';
         newDiv.appendChild(removeButton);
-  
         
         pageDiv.appendChild(newDiv);
     }
 }
-// addBookToLibrary(myLibrary);
+
+
+const myLibrary = [];
 
 // temp populate Library array with books 
 myLibrary.push(new Book('The Way of Kings', 'Brandon Sanderson', 2010));
@@ -64,3 +64,28 @@ myLibrary.push(new Book('Oathbringer', 'Brandon Sanderson', 2017));
 console.log(myLibrary);
 
 displayBookOnPage();
+
+const newBookBtn = document.querySelector('#new-book-button');
+const formSubmit = document.querySelector('#submit-form');
+const formClose = document.querySelector('#close-form');
+const bookForm = document.querySelector('form');
+
+newBookBtn.addEventListener( 'click', () => {
+    const displayStyle = bookForm.style.display;
+    if (displayStyle === 'none') {
+        bookForm.style.display = 'block';
+    } else {
+        bookForm.style.display = 'none';
+    }
+});
+
+formClose.addEventListener( 'click', (e) => {
+    e.preventDefault();
+    bookForm.style.display = 'none';
+});
+
+formSubmit.addEventListener( 'click', (e) => {
+    e.preventDefault();
+    addBookToLibrary();
+    displayBookOnPage();
+});
