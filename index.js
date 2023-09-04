@@ -1,9 +1,10 @@
 
-function Book(title, author, releaseDate) 
+function Book(title, author, releaseDate, read) 
 {
     this.title = title;
     this.author = author;
     this.releaseDate = releaseDate;
+    this.read = read;
 }
 
 function addBookToLibrary() 
@@ -42,16 +43,19 @@ function displayBookOnPage()
         const listOne = document.createElement('li');
         const listTwo = document.createElement('li');
         const listThree = document.createElement('li');
-        
+        const listFour = document.createElement('li');
+
         let bookObject = myLibrary[book];
         
         listOne.innerText = 'Title: ' + bookObject.title;
         listTwo.innerText = 'Author: ' + bookObject.author;
         listThree.innerText = 'Release Date: ' + bookObject.releaseDate;
+        listFour.innerText = 'Read Status: ' + bookObject.read;
         
         unorderedList.appendChild(listOne);
         unorderedList.appendChild(listTwo);
         unorderedList.appendChild(listThree);
+        unorderedList.appendChild(listFour);
         
         // Add the remove button
         const removeButton = document.createElement('button');
@@ -63,6 +67,15 @@ function displayBookOnPage()
         })
         newDiv.appendChild(removeButton);
 
+        // Add read status button
+        const readStatusButton = document.createElement('button');
+        readStatusButton.innerText = 'Read Status';
+        readStatusButton.addEventListener('click', () => {
+            bookObject.read = !bookObject.read;
+            displayBookOnPage();
+        })
+        newDiv.appendChild(readStatusButton);
+
 
         bookList.appendChild(newDiv);
     }
@@ -72,9 +85,9 @@ function displayBookOnPage()
 const myLibrary = [];
 
 // temp populate Library array with books 
-myLibrary.push(new Book('The Way of Kings', 'Brandon Sanderson', 2010));
-myLibrary.push(new Book('Words of Radiance', 'Brandon Sanderson', 2014));
-myLibrary.push(new Book('Oathbringer', 'Brandon Sanderson', 2017));
+myLibrary.push(new Book('The Way of Kings', 'Brandon Sanderson', 2010, true));
+myLibrary.push(new Book('Words of Radiance', 'Brandon Sanderson', 2014, true));
+myLibrary.push(new Book('Oathbringer', 'Brandon Sanderson', 2017, false));
 
 console.log(myLibrary);
 
