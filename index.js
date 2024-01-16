@@ -107,10 +107,10 @@ const bookForm = document.querySelector('form');
 
 newBookBtn.addEventListener( 'click', () => {
     const displayStyle = bookForm.style.display;
-    if (displayStyle === 'none') {
-        bookForm.style.display = 'block';
-    } else {
+    if (displayStyle === 'block') {
         bookForm.style.display = 'none';
+    } else {
+        bookForm.style.display = 'initial';
     }
 });
 
