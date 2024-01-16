@@ -106,17 +106,14 @@ const formClose = document.querySelector('#close-form');
 const bookForm = document.querySelector('form');
 
 newBookBtn.addEventListener( 'click', () => {
-    const displayStyle = bookForm.style.display;
-    if (displayStyle === 'block') {
-        bookForm.style.display = 'none';
-    } else {
-        bookForm.style.display = 'initial';
-    }
+    bookForm.style.display = 'initial';
+    newBookBtn.style.display = 'none';
 });
 
 formClose.addEventListener( 'click', (e) => {
     // e.preventDefault();
     bookForm.style.display = 'none';
+    newBookBtn.style.display = 'initial';
 });
 
 formSubmit.addEventListener( 'click', (e) => {
