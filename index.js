@@ -15,8 +15,9 @@ class Library {
         const title = document.querySelector('form > #title').value;
         const author = document.querySelector('form > #author').value;
         const releaseDate = document.querySelector('form > #release-date').value;
+        const readStatus = document.querySelector('form > #read-status').value;
         
-        this.library.push(new Book(title, author, releaseDate));
+        this.library.push(new Book(title, author, releaseDate, readStatus));
     }
 
     displayBookOnPage()
@@ -73,7 +74,7 @@ class Library {
             const readStatusButton = document.createElement('button');
             readStatusButton.innerText = 'Read Status';
             readStatusButton.addEventListener('click', () => {
-                bookObject.read = !bookObject.read;
+                bookObject.read = bookObject.read === 'Yes' ? 'No' : 'Yes';
                 this.displayBookOnPage();
             })
             newDiv.appendChild(readStatusButton);
