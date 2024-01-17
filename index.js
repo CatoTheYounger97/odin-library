@@ -52,7 +52,7 @@ class Library {
             
             listOne.innerText = 'Title: ' + bookObject.title;
             listTwo.innerText = 'Author: ' + bookObject.author;
-            listThree.innerText = 'Release Date: ' + bookObject.releaseDate;
+            listThree.innerText = 'Release Year: ' + bookObject.releaseDate;
             listFour.innerText = 'Read Status: ' + bookObject.read;
             
             unorderedList.appendChild(listOne);
@@ -84,13 +84,6 @@ class Library {
         }
     }
 }
-
-
-// add form validation 
-
-const title = document.querySelector('form > #title');
-const author = document.querySelector('form > #author');
-const releaseDate = document.querySelector('form > #release-date');
 
 
 
@@ -125,10 +118,30 @@ formClose.addEventListener( 'click', (e) => {
 
 formSubmit.addEventListener( 'click', (e) => {
     e.preventDefault();
-    myLibrary.addBookToLibrary();
-    myLibrary.displayBookOnPage();
+    const bookForm = document.querySelector('form');
+
+    if (bookForm.checkValidity()) {
+        myLibrary.addBookToLibrary();
+        myLibrary.displayBookOnPage();
+    } else {
+        bookForm.reportValidity();
+    }
+    
 });
 
+// add form validation 
+
+const title = document.querySelector('form > #title');
+const author = document.querySelector('form > #author');
+const releaseDate = document.querySelector('form > #release-date');
+
+releaseDate.addEventListener('input', () => {
+    if (releaseDate.validity.patternMismatch) {
+        releaseDate.setCustomValidity("I am expecting a four digit year");
+    } else {
+        releaseDate.setCustomValidity("");
+    }
+});
 
 
 
