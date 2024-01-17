@@ -86,6 +86,12 @@ class Library {
 }
 
 
+// add form validation 
+
+const title = document.querySelector('form > #title');
+const author = document.querySelector('form > #author');
+const releaseDate = document.querySelector('form > #release-date');
+
 
 
 
@@ -93,9 +99,9 @@ class Library {
 const myLibrary = new Library();
 
 // temp populate Library array with books 
-myLibrary.library.push(new Book('The Way of Kings', 'Brandon Sanderson', 2010, true));
-myLibrary.library.push(new Book('Words of Radiance', 'Brandon Sanderson', 2014, true));
-myLibrary.library.push(new Book('Oathbringer', 'Brandon Sanderson', 2017, false));
+myLibrary.library.push(new Book('The Way of Kings', 'Brandon Sanderson', 2010, 'Yes'));
+myLibrary.library.push(new Book('Words of Radiance', 'Brandon Sanderson', 2014, 'Yes'));
+myLibrary.library.push(new Book('Oathbringer', 'Brandon Sanderson', 2017, 'No'));
 
 console.log(myLibrary.library);
 
@@ -122,3 +128,7 @@ formSubmit.addEventListener( 'click', (e) => {
     myLibrary.addBookToLibrary();
     myLibrary.displayBookOnPage();
 });
+
+
+
+
